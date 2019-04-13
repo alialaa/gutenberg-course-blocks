@@ -3,8 +3,8 @@ var __ = wp.i18n.__;
 var el = wp.element.createElement;
 
 registerBlockType('mytheme-blocks/firstblock', {
-    title: __('First Block', 'mytheme-blocks'),
-    description: __('Our first block', 'mytheme-blocks'),
+    title: __('First sfafas Block', 'mytheme-blocks'),
+    description: __('Our first sfsf block', 'mytheme-blocks'),
     category: 'layout',
     icon: 'admin-network',
     keywords: [__('photo', 'mytheme-blocks'), __('image', 'mytheme-blocks') ],

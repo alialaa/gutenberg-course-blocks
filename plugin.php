@@ -34,6 +34,7 @@ function mytheme_blocks_register() {
     );
     
     mytheme_blocks_register_block_type('firstblock');
+    mytheme_blocks_register_block_type('secondblock');
 }
 
 add_action('init', 'mytheme_blocks_register');

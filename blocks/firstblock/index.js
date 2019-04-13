@@ -1,4 +1,4 @@
-var registerBlockType = wp.block.registerBlockType;
+var registerBlockType = wp.blocks.registerBlockType;
 var __ = wp.i18n.__;
 
 registerBlockType('mytheme-blocks/firstblock', {

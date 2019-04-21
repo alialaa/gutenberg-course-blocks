@@ -1,55 +1,58 @@
 {
-  "name": "mytheme-blocks",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "lint": "eslint src",
-    "start": "webpack --mode=development --watch",
-    "build": "npm run lint && webpack --mode=production && gulp bundle"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alialaa/gutenberg-course-webpack.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alialaa/gutenberg-course-webpack/issues"
-  },
-  "homepage": "https://github.com/alialaa/gutenberg-course-webpack#readme",
-  "dependencies": {
-    "@wordpress/blocks": "^6.2.2",
-    "@wordpress/i18n": "^3.3.0",
-    "jquery": "^3.4.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
-    "@wordpress/browserslist-config": "^2.3.0",
-    "autoprefixer": "^9.5.1",
-    "babel-loader": "^8.0.5",
-    "browserslist": "^4.5.4",
-    "clean-webpack-plugin": "^2.0.1",
-    "css-loader": "^2.1.1",
-    "eslint": "^5.16.0",
-    "eslint-loader": "^2.1.2",
-    "eslint-plugin-react": "^7.12.4",
-    "gulp": "^4.0.0",
-    "gulp-zip": "^4.2.0",
-    "mini-css-extract-plugin": "^0.6.0",
-    "node-sass": "^4.11.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "postcss-loader": "^3.0.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0"
-  },
-  "browserslist": [
-    "extends @wordpress/browserslist-config"
-  ]
+    "name": "mytheme-blocks",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "checkFormat": "prettier --check \"**/*.{js,json,css,scss}\"",
+        "format": "prettier --write \"**/*.{js,json,css,scss}\"",
+        "lint": "eslint src",
+        "start": "webpack --mode=development --watch",
+        "build": "npm run lint && webpack --mode=production && gulp bundle"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alialaa/gutenberg-course-webpack.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/alialaa/gutenberg-course-webpack/issues"
+    },
+    "homepage": "https://github.com/alialaa/gutenberg-course-webpack#readme",
+    "dependencies": {
+        "@wordpress/blocks": "^6.2.2",
+        "@wordpress/i18n": "^3.3.0",
+        "jquery": "^3.4.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.3",
+        "@babel/preset-env": "^7.4.3",
+        "@babel/preset-react": "^7.0.0",
+        "@wordpress/browserslist-config": "^2.3.0",
+        "autoprefixer": "^9.5.1",
+        "babel-loader": "^8.0.5",
+        "browserslist": "^4.5.4",
+        "clean-webpack-plugin": "^2.0.1",
+        "css-loader": "^2.1.1",
+        "eslint": "^5.16.0",
+        "eslint-loader": "^2.1.2",
+        "eslint-plugin-react": "^7.12.4",
+        "gulp": "^4.0.0",
+        "gulp-zip": "^4.2.0",
+        "mini-css-extract-plugin": "^0.6.0",
+        "node-sass": "^4.11.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "postcss-loader": "^3.0.0",
+        "prettier": "^1.17.0",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "webpack": "^4.30.0",
+        "webpack-cli": "^3.3.0"
+    },
+    "browserslist": [
+        "extends @wordpress/browserslist-config"
+    ]
 }

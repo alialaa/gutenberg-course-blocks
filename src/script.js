@@ -1,1 +1,1 @@
-import './blocks/secondblock/script';
+import "./blocks/secondblock/script";

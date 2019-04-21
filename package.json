@@ -38,6 +38,7 @@
         "clean-webpack-plugin": "^2.0.1",
         "css-loader": "^2.1.1",
         "eslint": "^5.16.0",
+        "eslint-config-prettier": "^4.1.0",
         "eslint-loader": "^2.1.2",
         "eslint-plugin-react": "^7.12.4",
         "gulp": "^4.0.0",

@@ -14,6 +14,11 @@
         "type": "git",
         "url": "git+https://github.com/alialaa/gutenberg-course-webpack.git"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint && npm run checkFormat"
+        }
+    },
     "author": "",
     "license": "ISC",
     "bugs": {
@@ -43,6 +48,7 @@
         "eslint-plugin-react": "^7.12.4",
         "gulp": "^4.0.0",
         "gulp-zip": "^4.2.0",
+        "husky": "^1.3.1",
         "mini-css-extract-plugin": "^0.6.0",
         "node-sass": "^4.11.0",
         "optimize-css-assets-webpack-plugin": "^5.0.1",

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint src",
     "start": "webpack --mode=development --watch",
-    "build": "webpack --mode=production && gulp bundle"
+    "build": "npm run lint && webpack --mode=production && gulp bundle"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "clean-webpack-plugin": "^2.0.1",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
+    "eslint-loader": "^2.1.2",
     "eslint-plugin-react": "^7.12.4",
     "gulp": "^4.0.0",
     "gulp-zip": "^4.2.0",

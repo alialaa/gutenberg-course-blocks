@@ -46,6 +46,8 @@
         "@babel/preset-env": "^7.4.3",
         "@babel/preset-react": "^7.0.0",
         "@wordpress/browserslist-config": "^2.3.0",
+        "@wordpress/components": "^7.3.1",
+        "@wordpress/editor": "^9.2.4",
         "autoprefixer": "^9.5.1",
         "babel-loader": "^8.0.5",
         "browserslist": "^4.5.4",

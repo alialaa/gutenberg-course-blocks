@@ -1,6 +1,7 @@
 import "./styles.editor.scss";
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
+import { RichText } from "@wordpress/editor";
 
 registerBlockType("mytheme-blocks/secondblock", {
     title: __("Second Block", "mytheme-blocks"),
@@ -18,8 +19,28 @@ registerBlockType("mytheme-blocks/secondblock", {
         </svg>
     ),
     keywords: [__("photo", "mytheme-blocks"), __("image", "mytheme-blocks")],
-    edit: ({ className }) => {
-        return <p className={className}>Editor</p>;
+    attributes: {
+        content: {
+            type: "string"
+        }
+    },
+
+    edit: ({ className, attributes, setAttributes }) => {
+        //console.log(attributes);
+        const { content } = attributes;
+        const onChangeContent = content => {
+            setAttributes({ content });
+        };
+        return (
+            <RichText
+                tagName="p"
+                className={className}
+                onChange={onChangeContent}
+                value={content}
+                formattingControls={["bold"]}
+            />
+        );
+        //return <p className={className}>Editor</p>;
     },
     save: function() {
         return <p>Saved Content</p>;

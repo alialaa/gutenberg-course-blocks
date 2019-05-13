@@ -4,7 +4,7 @@ module.exports = {
         es6: true,
         node: true
     },
-    extends: ["eslint:recommended", "prettier"],
+    extends: ["eslint:recommended", "prettier", "plugin:react/recommended"],
     globals: {
         Atomics: "readonly",
         SharedArrayBuffer: "readonly",
@@ -19,6 +19,9 @@ module.exports = {
     },
     plugins: ["react"],
     rules: {
-        "no-console": "error"
+        "no-console": "error",
+        "react/react-in-jsx-scope": "off",
+        "react/display-name": "off",
+        "react/prop-types": "off"
     }
 };

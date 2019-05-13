@@ -21,7 +21,9 @@ registerBlockType("mytheme-blocks/secondblock", {
     keywords: [__("photo", "mytheme-blocks"), __("image", "mytheme-blocks")],
     attributes: {
         content: {
-            type: "string"
+            type: "string",
+            source: "html",
+            selector: "p"
         }
     },
 

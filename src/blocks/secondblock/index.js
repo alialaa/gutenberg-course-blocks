@@ -8,6 +8,7 @@ import {
     AlignmentToolbar,
     PanelColorSettings
 } from "@wordpress/editor";
+import Edit from "./edit";
 //import { PanelBody } from "@wordpress/components";
 
 registerBlockType("mytheme-blocks/secondblock", {
@@ -59,8 +60,8 @@ registerBlockType("mytheme-blocks/secondblock", {
             type: "string"
         }
     },
-
-    edit: ({ className, attributes, setAttributes }) => {
+    edit: Edit,
+    edit2: ({ className, attributes, setAttributes }) => {
         //console.log(attributes);
         const { content, alignment, backgroundColor, textColor } = attributes;
         const onChangeContent = content => {

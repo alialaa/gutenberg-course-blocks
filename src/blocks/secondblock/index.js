@@ -52,6 +52,12 @@ registerBlockType("mytheme-blocks/secondblock", {
         },
         backgroundColor: {
             type: "string"
+        },
+        customBackgroundColor: {
+            type: "string"
+        },
+        customTextColor: {
+            type: "string"
         }
     },
     edit: Edit,

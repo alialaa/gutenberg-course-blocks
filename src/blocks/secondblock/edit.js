@@ -6,7 +6,8 @@ import {
     InspectorControls,
     AlignmentToolbar,
     PanelColorSettings,
-    withColors
+    withColors,
+    ContrastChecker
 } from "@wordpress/editor";
 
 class Edit extends Component {
@@ -18,17 +19,24 @@ class Edit extends Component {
         this.props.setAttributes({ alignment });
     };
 
-    onChangeBackgroundColor = backgroundColor => {
-        this.props.setAttributes({ backgroundColor });
-    };
+    // onChangeBackgroundColor = backgroundColor => {
+    //     this.props.setAttributes({ backgroundColor });
+    // };
 
-    onChangeTextColor = textColor => {
-        this.props.setAttributes({ textColor });
-    };
+    // onChangeTextColor = textColor => {
+    //     this.props.setAttributes({ textColor });
+    // };
     render() {
         //console.log(this.props);
-        const { className, attributes } = this.props;
-        const { content, alignment, backgroundColor, textColor } = attributes;
+        const {
+            className,
+            attributes,
+            setTextColor,
+            setBackgroundColor,
+            backgroundColor,
+            textColor
+        } = this.props;
+        const { content, alignment } = attributes;
         return (
             <>
                 <InspectorControls>
@@ -36,17 +44,22 @@ class Edit extends Component {
                         title={__("Panel", "mytheme-blocks")}
                         colorSettings={[
                             {
-                                value: backgroundColor,
-                                onChange: this.onChangeBackgroundColor,
+                                value: backgroundColor.color,
+                                onChange: setBackgroundColor,
                                 label: __("Backgorund Colour", "mytheme-blocks")
                             },
                             {
-                                value: textColor,
-                                onChange: this.onChangeTextColor,
+                                value: textColor.color,
+                                onChange: setTextColor,
                                 label: __("Text Colour", "mytheme-blocks")
                             }
                         ]}
-                    />
+                    >
+                        <ContrastChecker
+                            textColor={textColor.color}
+                            backgroundColor={backgroundColor.color}
+                        />
+                    </PanelColorSettings>
                 </InspectorControls>
                 <BlockControls>
                     <AlignmentToolbar
@@ -62,8 +75,8 @@ class Edit extends Component {
                     formattingControls={["bold"]}
                     style={{
                         textAlign: alignment,
-                        backgroundColor: backgroundColor,
-                        color: textColor
+                        backgroundColor: backgroundColor.color,
+                        color: textColor.color
                     }}
                 />
             </>
@@ -71,4 +84,4 @@ class Edit extends Component {
     }
 }
 
-export default withColors("backgroundColor", "textColor")(Edit);
+export default withColors("backgroundColor", { textColor: "color" })(Edit);

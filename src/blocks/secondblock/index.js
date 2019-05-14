@@ -1,8 +1,9 @@
 import "./styles.editor.scss";
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
-import { RichText } from "@wordpress/editor";
+import { RichText, getColorClassName } from "@wordpress/editor";
 import Edit from "./edit";
+import classnames from "classnames";
 //import { PanelBody } from "@wordpress/components";
 
 registerBlockType("mytheme-blocks/secondblock", {
@@ -62,15 +63,37 @@ registerBlockType("mytheme-blocks/secondblock", {
     },
     edit: Edit,
     save: ({ attributes }) => {
-        const { content, alignment, backgroundColor, textColor } = attributes;
+        const {
+            content,
+            alignment,
+            backgroundColor,
+            textColor,
+            customBackgroundColor,
+            customTextColor
+        } = attributes;
+
+        const backgroundClass = getColorClassName(
+            "background-color",
+            backgroundColor
+        );
+        const textClass = getColorClassName("color", textColor);
+
+        const classes = classnames({
+            [backgroundClass]: backgroundClass,
+            [textClass]: textClass
+        });
+
         return (
             <RichText.Content
                 tagName="p"
+                className={classes}
                 value={content}
                 style={{
                     textAlign: alignment,
-                    backgroundColor: backgroundColor,
-                    color: textColor
+                    backgroundColor: backgroundClass
+                        ? undefined
+                        : customBackgroundColor,
+                    color: textClass ? undefined : customTextColor
                 }}
             />
         );

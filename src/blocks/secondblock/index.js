@@ -5,9 +5,10 @@ import {
     RichText,
     BlockControls,
     InspectorControls,
-    AlignmentToolbar
+    AlignmentToolbar,
+    PanelColorSettings
 } from "@wordpress/editor";
-import { PanelBody, ColorPalette } from "@wordpress/components";
+//import { PanelBody } from "@wordpress/components";
 
 registerBlockType("mytheme-blocks/secondblock", {
     title: __("Second Block", "mytheme-blocks"),
@@ -33,12 +34,18 @@ registerBlockType("mytheme-blocks/secondblock", {
         },
         alignment: {
             type: "string"
+        },
+        textColor: {
+            type: "string"
+        },
+        backgroundColor: {
+            type: "string"
         }
     },
 
     edit: ({ className, attributes, setAttributes }) => {
         //console.log(attributes);
-        const { content, alignment } = attributes;
+        const { content, alignment, backgroundColor, textColor } = attributes;
         const onChangeContent = content => {
             setAttributes({ content });
         };
@@ -47,15 +54,32 @@ registerBlockType("mytheme-blocks/secondblock", {
             setAttributes({ alignment });
         };
 
+        const onChangeBackgroundColor = backgroundColor => {
+            setAttributes({ backgroundColor });
+        };
+
+        const onChangeTextColor = textColor => {
+            setAttributes({ textColor });
+        };
+
         return (
             <>
                 <InspectorControls>
-                    <PanelBody title={__("Panel", "mytheme-blocks")}>
-                        <ColorPalette
-                            colors={[{ color: "#f03" }, { color: "blue" }]}
-                            //onChange={value => console.log(value)}
-                        />
-                    </PanelBody>
+                    <PanelColorSettings
+                        title={__("Panel", "mytheme-blocks")}
+                        colorSettings={[
+                            {
+                                value: backgroundColor,
+                                onChange: onChangeBackgroundColor,
+                                label: __("Backgorund Colour", "mytheme-blocks")
+                            },
+                            {
+                                value: textColor,
+                                onChange: onChangeTextColor,
+                                label: __("Text Colour", "mytheme-blocks")
+                            }
+                        ]}
+                    />
                 </InspectorControls>
                 <BlockControls>
                     <AlignmentToolbar
@@ -69,18 +93,26 @@ registerBlockType("mytheme-blocks/secondblock", {
                     onChange={onChangeContent}
                     value={content}
                     formattingControls={["bold"]}
-                    style={{ textAlign: alignment }}
+                    style={{
+                        textAlign: alignment,
+                        backgroundColor: backgroundColor,
+                        color: textColor
+                    }}
                 />
             </>
         );
     },
     save: ({ attributes }) => {
-        const { content, alignment } = attributes;
+        const { content, alignment, backgroundColor, textColor } = attributes;
         return (
             <RichText.Content
                 tagName="p"
                 value={content}
-                style={{ textAlign: alignment }}
+                style={{
+                    textAlign: alignment,
+                    backgroundColor: backgroundColor,
+                    color: textColor
+                }}
             />
         );
     }

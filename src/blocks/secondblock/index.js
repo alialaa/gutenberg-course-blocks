@@ -26,6 +26,23 @@ registerBlockType("mytheme-blocks/secondblock", {
         </svg>
     ),
     keywords: [__("photo", "mytheme-blocks"), __("image", "mytheme-blocks")],
+
+    styles: [
+        {
+            name: "rounded",
+            label: __("Rounded", "mytheme-blocks"),
+            usDefault: true
+        },
+        {
+            name: "outline",
+            label: __("Outline", "mytheme-blocks")
+        },
+        {
+            name: "squared",
+            label: __("Squared", "mytheme-blocks")
+        }
+    ],
+
     attributes: {
         content: {
             type: "string",

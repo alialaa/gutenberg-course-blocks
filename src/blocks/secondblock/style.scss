@@ -3,4 +3,11 @@
     color: #fff;
     border-radius: 5px;
     padding: 20px;
+    &.is-style-squared {
+        border-radius: 0px;
+    }
+    &.is-style-outline {
+        border-radius: 0px;
+        border: 2px solid currentColor;
+    }
 }

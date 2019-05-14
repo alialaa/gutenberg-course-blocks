@@ -1,8 +1,8 @@
 import "./styles.editor.scss";
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
-import { RichText, BlockControls } from "@wordpress/editor";
-import { Toolbar, DropdownMenu } from "@wordpress/components";
+import { RichText, BlockControls, AlignmentToolbar } from "@wordpress/editor";
+//import { Toolbar, DropdownMenu } from "@wordpress/components";
 
 registerBlockType("mytheme-blocks/secondblock", {
     title: __("Second Block", "mytheme-blocks"),
@@ -25,83 +25,30 @@ registerBlockType("mytheme-blocks/secondblock", {
             type: "string",
             source: "html",
             selector: "p"
+        },
+        alignment: {
+            type: "string"
         }
     },
 
     edit: ({ className, attributes, setAttributes }) => {
         //console.log(attributes);
-        const { content } = attributes;
+        const { content, alignment } = attributes;
         const onChangeContent = content => {
             setAttributes({ content });
         };
+
+        const onChangeAlignment = alignment => {
+            setAttributes({ alignment });
+        };
+
         return (
             <>
-                <BlockControls
-                    controls={[
-                        [
-                            {
-                                icon: "wordpress",
-                                title: __("test", "mytheme-blocks"),
-                                onClick: () => alert(true),
-                                isActive: false
-                            }
-                        ],
-                        [
-                            {
-                                icon: "wordpress",
-                                title: __("test", "mytheme-blocks"),
-                                onClick: () => alert(true),
-                                isActive: false
-                            }
-                        ]
-                    ]}
-                >
-                    <Toolbar
-                        controls={[
-                            [
-                                {
-                                    icon: "wordpress",
-                                    title: __("test", "mytheme-blocks"),
-                                    onClick: () => alert(true),
-                                    isActive: false
-                                }
-                            ],
-                            [
-                                {
-                                    icon: "wordpress",
-                                    title: __("test", "mytheme-blocks"),
-                                    onClick: () => alert(true),
-                                    isActive: false
-                                }
-                            ]
-                        ]}
+                <BlockControls>
+                    <AlignmentToolbar
+                        value={alignment}
+                        onChange={onChangeAlignment}
                     />
-                    {content && content.length > 0 && (
-                        <Toolbar>
-                            <DropdownMenu
-                                icon="editor-table"
-                                label={__("test", "mytheme-blocks")}
-                                controls={[
-                                    [
-                                        {
-                                            icon: "wordpress",
-                                            title: __("test", "mytheme-blocks"),
-                                            onClick: () => alert(true),
-                                            isActive: false
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            icon: "wordpress",
-                                            title: __("test", "mytheme-blocks"),
-                                            onClick: () => alert(true),
-                                            isActive: false
-                                        }
-                                    ]
-                                ]}
-                            />
-                        </Toolbar>
-                    )}
                 </BlockControls>
                 <RichText
                     tagName="p"
@@ -109,12 +56,19 @@ registerBlockType("mytheme-blocks/secondblock", {
                     onChange={onChangeContent}
                     value={content}
                     formattingControls={["bold"]}
+                    style={{ textAlign: alignment }}
                 />
             </>
         );
     },
     save: ({ attributes }) => {
-        const { content } = attributes;
-        return <RichText.Content tagName="p" value={content} />;
+        const { content, alignment } = attributes;
+        return (
+            <RichText.Content
+                tagName="p"
+                value={content}
+                style={{ textAlign: alignment }}
+            />
+        );
     }
 });

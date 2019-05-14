@@ -5,7 +5,8 @@ import {
     BlockControls,
     InspectorControls,
     AlignmentToolbar,
-    PanelColorSettings
+    PanelColorSettings,
+    withColors
 } from "@wordpress/editor";
 
 class Edit extends Component {
@@ -25,6 +26,7 @@ class Edit extends Component {
         this.props.setAttributes({ textColor });
     };
     render() {
+        //console.log(this.props);
         const { className, attributes } = this.props;
         const { content, alignment, backgroundColor, textColor } = attributes;
         return (
@@ -69,4 +71,4 @@ class Edit extends Component {
     }
 }
 
-export default Edit;
+export default withColors("backgroundColor", "textColor")(Edit);

@@ -43,6 +43,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.4.3",
+        "@babel/plugin-proposal-class-properties": "^7.4.4",
         "@babel/preset-env": "^7.4.3",
         "@babel/preset-react": "^7.0.0",
         "@wordpress/browserslist-config": "^2.3.0",
@@ -50,6 +51,7 @@
         "@wordpress/editor": "^9.2.4",
         "@wordpress/element": "^2.3.0",
         "autoprefixer": "^9.5.1",
+        "babel-eslint": "^10.0.1",
         "babel-loader": "^8.0.5",
         "browserslist": "^4.5.4",
         "clean-webpack-plugin": "^2.0.1",

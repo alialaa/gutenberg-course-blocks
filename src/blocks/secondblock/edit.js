@@ -9,6 +9,7 @@ import {
     withColors,
     ContrastChecker
 } from "@wordpress/editor";
+import classnames from "classnames";
 
 class Edit extends Component {
     onChangeContent = content => {
@@ -19,13 +20,10 @@ class Edit extends Component {
         this.props.setAttributes({ alignment });
     };
 
-    // onChangeBackgroundColor = backgroundColor => {
-    //     this.props.setAttributes({ backgroundColor });
-    // };
+    toggleShadow = () => {
+        this.props.setAttributes({ shadow: !this.props.attributes.shadow });
+    };
 
-    // onChangeTextColor = textColor => {
-    //     this.props.setAttributes({ textColor });
-    // };
     render() {
         //console.log(this.props);
         const {
@@ -36,7 +34,10 @@ class Edit extends Component {
             backgroundColor,
             textColor
         } = this.props;
-        const { content, alignment } = attributes;
+        const { content, alignment, shadow } = attributes;
+        const classes = classnames(className, {
+            "has-shadow": shadow
+        });
         return (
             <>
                 <InspectorControls>
@@ -61,7 +62,16 @@ class Edit extends Component {
                         />
                     </PanelColorSettings>
                 </InspectorControls>
-                <BlockControls>
+                <BlockControls
+                    controls={[
+                        {
+                            icon: "wordpress",
+                            title: __("Shadow", "mytheme-blocks"),
+                            onClick: this.toggleShadow,
+                            isActive: shadow
+                        }
+                    ]}
+                >
                     <AlignmentToolbar
                         value={alignment}
                         onChange={this.onChangeAlignment}
@@ -69,7 +79,7 @@ class Edit extends Component {
                 </BlockControls>
                 <RichText
                     tagName="p"
-                    className={className}
+                    className={classes}
                     onChange={this.onChangeContent}
                     value={content}
                     formattingControls={["bold"]}

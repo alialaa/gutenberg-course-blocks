@@ -1,8 +1,13 @@
 import "./styles.editor.scss";
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
-import { RichText, BlockControls, AlignmentToolbar } from "@wordpress/editor";
-//import { Toolbar, DropdownMenu } from "@wordpress/components";
+import {
+    RichText,
+    BlockControls,
+    InspectorControls,
+    AlignmentToolbar
+} from "@wordpress/editor";
+import { PanelBody, ColorPalette } from "@wordpress/components";
 
 registerBlockType("mytheme-blocks/secondblock", {
     title: __("Second Block", "mytheme-blocks"),
@@ -44,6 +49,14 @@ registerBlockType("mytheme-blocks/secondblock", {
 
         return (
             <>
+                <InspectorControls>
+                    <PanelBody title={__("Panel", "mytheme-blocks")}>
+                        <ColorPalette
+                            colors={[{ color: "#f03" }, { color: "blue" }]}
+                            //onChange={value => console.log(value)}
+                        />
+                    </PanelBody>
+                </InspectorControls>
                 <BlockControls>
                     <AlignmentToolbar
                         value={alignment}

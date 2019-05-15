@@ -217,7 +217,22 @@ registerBlockType("mytheme-blocks/secondblock", {
                 }
             }
         ],
-        to: []
+        to: [
+            {
+                type: "block",
+                blocks: ["core/paragraph"],
+                isMatch: ({ content }) => {
+                    if (content) return true;
+                    return false;
+                },
+                transform: ({ content, textAlignment }) => {
+                    return createBlock("core/paragraph", {
+                        content: content,
+                        align: textAlignment
+                    });
+                }
+            }
+        ]
     },
     edit: Edit,
     save: ({ attributes }) => {

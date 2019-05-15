@@ -4,6 +4,7 @@ import { __ } from "@wordpress/i18n";
 import { RichText, getColorClassName } from "@wordpress/editor";
 import Edit from "./edit";
 import classnames from "classnames";
+import { omit } from "lodash";
 //import { PanelBody } from "@wordpress/components";
 
 const attributes = {
@@ -13,6 +14,9 @@ const attributes = {
         selector: "h4"
     },
     alignment: {
+        type: "string"
+    },
+    textAlignment: {
         type: "string"
     },
     textColor: {
@@ -73,14 +77,83 @@ registerBlockType("mytheme-blocks/secondblock", {
     attributes,
     deprecated: [
         {
+            attributes: omit(
+                {
+                    ...attributes
+                },
+                ["textAlignment"]
+            ),
+            migrate: attributes => {
+                return omit(
+                    {
+                        ...attributes,
+                        textAlignment: attributes.alignment
+                    },
+                    ["alignment"]
+                );
+            },
+            save: ({ attributes }) => {
+                const {
+                    content,
+                    alignment,
+                    backgroundColor,
+                    textColor,
+                    customBackgroundColor,
+                    customTextColor,
+                    shadow,
+                    shadowOpacity
+                } = attributes;
+
+                const backgroundClass = getColorClassName(
+                    "background-color",
+                    backgroundColor
+                );
+                const textClass = getColorClassName("color", textColor);
+
+                const classes = classnames({
+                    [backgroundClass]: backgroundClass,
+                    [textClass]: textClass,
+                    "has-shadow": shadow,
+                    [`shadow-opacity-${shadowOpacity * 100}`]: shadowOpacity
+                });
+
+                return (
+                    <RichText.Content
+                        tagName="h4"
+                        className={classes}
+                        value={content}
+                        style={{
+                            textAlign: alignment,
+                            backgroundColor: backgroundClass
+                                ? undefined
+                                : customBackgroundColor,
+                            color: textClass ? undefined : customTextColor
+                        }}
+                    />
+                );
+            }
+        },
+        {
             //supports
-            attributes: {
-                ...attributes,
-                content: {
-                    type: "string",
-                    source: "html",
-                    selector: "p"
-                }
+            attributes: omit(
+                {
+                    ...attributes,
+                    content: {
+                        type: "string",
+                        source: "html",
+                        selector: "p"
+                    }
+                },
+                ["textAlignment"]
+            ),
+            migrate: attributes => {
+                return omit(
+                    {
+                        ...attributes,
+                        textAlignment: attributes.alignment
+                    },
+                    ["alignment"]
+                );
             },
             save: ({ attributes }) => {
                 const {
@@ -128,7 +201,7 @@ registerBlockType("mytheme-blocks/secondblock", {
     save: ({ attributes }) => {
         const {
             content,
-            alignment,
+            textAlignment,
             backgroundColor,
             textColor,
             customBackgroundColor,
@@ -156,7 +229,7 @@ registerBlockType("mytheme-blocks/secondblock", {
                 className={classes}
                 value={content}
                 style={{
-                    textAlign: alignment,
+                    textAlign: textAlignment,
                     backgroundColor: backgroundClass
                         ? undefined
                         : customBackgroundColor,

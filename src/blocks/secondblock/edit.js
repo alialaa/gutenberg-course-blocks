@@ -9,6 +9,7 @@ import {
     withColors,
     ContrastChecker
 } from "@wordpress/editor";
+import { RangeControl, PanelBody } from "@wordpress/components";
 import classnames from "classnames";
 
 class Edit extends Component {
@@ -24,6 +25,10 @@ class Edit extends Component {
         this.props.setAttributes({ shadow: !this.props.attributes.shadow });
     };
 
+    onChangeShadowOpacity = shadowOpacity => {
+        this.props.setAttributes({ shadowOpacity });
+    };
+
     render() {
         //console.log(this.props);
         const {
@@ -34,13 +39,26 @@ class Edit extends Component {
             backgroundColor,
             textColor
         } = this.props;
-        const { content, alignment, shadow } = attributes;
+        const { content, alignment, shadow, shadowOpacity } = attributes;
         const classes = classnames(className, {
-            "has-shadow": shadow
+            "has-shadow": shadow,
+            [`shadow-opacity-${shadowOpacity * 100}`]: shadowOpacity
         });
         return (
             <>
                 <InspectorControls>
+                    <PanelBody title={__("Setting", "mytheme-blocks")}>
+                        {shadow && (
+                            <RangeControl
+                                label={__("Shadow Opacity", "mytheme-blocks")}
+                                value={shadowOpacity}
+                                onChange={this.onChangeShadowOpacity}
+                                min={0.1}
+                                max={0.4}
+                                step={0.1}
+                            />
+                        )}
+                    </PanelBody>
                     <PanelColorSettings
                         title={__("Panel", "mytheme-blocks")}
                         colorSettings={[

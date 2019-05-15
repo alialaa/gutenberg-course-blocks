@@ -63,6 +63,10 @@ registerBlockType("mytheme-blocks/secondblock", {
         shadow: {
             type: "boolean",
             default: false
+        },
+        shadowOpactiy: {
+            type: "number",
+            default: 0.3
         }
     },
     edit: Edit,
@@ -73,7 +77,9 @@ registerBlockType("mytheme-blocks/secondblock", {
             backgroundColor,
             textColor,
             customBackgroundColor,
-            customTextColor
+            customTextColor,
+            shadow,
+            shadowOpacity
         } = attributes;
 
         const backgroundClass = getColorClassName(
@@ -84,7 +90,9 @@ registerBlockType("mytheme-blocks/secondblock", {
 
         const classes = classnames({
             [backgroundClass]: backgroundClass,
-            [textClass]: textClass
+            [textClass]: textClass,
+            "has-shadow": shadow,
+            [`shadow-opacity-${shadowOpacity * 100}`]: shadowOpacity
         });
 
         return (

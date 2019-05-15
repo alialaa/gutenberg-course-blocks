@@ -12,5 +12,17 @@
     }
     &.has-shadow {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        &.shadow-opacity-10 {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        &.shadow-opacity-20 {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        &.shadow-opacity-30 {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        &.shadow-opacity-40 {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
     }
 }

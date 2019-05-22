@@ -25,7 +25,7 @@ registerBlockType("mytheme-blocks/team-member", {
 
     icon: "admin-users",
 
-    parent: ["mytheme-block/team-members"],
+    parent: ["mytheme-blocks/team-members"],
 
     category: "mytheme-category",
 

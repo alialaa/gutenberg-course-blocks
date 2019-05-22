@@ -43,7 +43,7 @@ registerBlockType("mytheme-blocks/team-members", {
                     </panelBody>
                 </InspectorControls>
                 <InnerBlocks
-                    allowedBlocks={["mytheme-blocks/team-members"]}
+                    allowedBlocks={["mytheme-blocks/team-member"]}
                     template={[
                         ["mytheme-blocks/team-member"],
                         ["mytheme-blocks/team-member"]

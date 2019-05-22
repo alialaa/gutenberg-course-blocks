@@ -6,7 +6,7 @@
     @for $i from 1 through 6 {
         &.has-#{$i}-columns {
             .wp-block-mytheme-blocks-team-member {
-                width: calc(100% /#{$i} - 20px;);
+                width: calc(100% /#{$i} - 20px);
             }
         }
     }

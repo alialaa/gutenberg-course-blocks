@@ -10,7 +10,7 @@ const attributes = {
     }
 };
 
-registerBlockType("mytheme-block/team-members", {
+registerBlockType("mytheme-blocks/team-members", {
     title: __("Team Members", "mytheme-blocks"),
 
     description: __("Block showing a Team Members.", "mytheme-blocks"),

@@ -1,13 +1,27 @@
-.wp-block-mytheme-blocks-team-member {
-    &__title {
-        color: #222;
-        font-size: 18px;
-        font-size: bold;
-        margin-bottom: 0;
+.wp-block-mytheme-blocks-team-members {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+    @for $i from 1 through 6 {
+        &.has-#{$i}-columns {
+            .wp-block-mytheme-blocks-team-member {
+                width: calc(100% /#{$i} - 20px;);
+            }
+        }
     }
-    &__info {
-        color: #565656;
-        font-weight: 300;
-        margin-bottom: 5px;
+    .wp-block-mytheme-blocks-team-member {
+        margin: 10px;
+        &__title {
+            color: #222;
+            font-size: 18px;
+            font-size: bold;
+            margin-bottom: 0;
+        }
+        &__info {
+            color: #565656;
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
     }
 }

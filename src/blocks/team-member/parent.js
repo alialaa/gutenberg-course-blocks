@@ -2,7 +2,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 import { InnerBlocks } from "@wordpress/editor";
 
-registerBlockType("mytheme-block/team-members", {
+registerBlockType("mytheme-blocks/team-members", {
     title: __("Team Members", "mytheme-blocks"),
 
     description: __("Block showing a Team Members.", "mytheme-blocks"),
@@ -21,7 +21,7 @@ registerBlockType("mytheme-block/team-members", {
         return (
             <div className={className}>
                 <InnerBlocks
-                    allowedBlocks={["mytheme-blocks/team-members"]}
+                    allowedBlocks={["mytheme-blocks/team-member"]}
                     template={[
                         ["mytheme-blocks/team-member"],
                         ["mytheme-blocks/team-member"]

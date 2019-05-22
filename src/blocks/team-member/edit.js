@@ -1,6 +1,8 @@
 import { Component } from "@wordpress/element";
 import { RichText, MediaPlaceholder } from "@wordpress/editor";
 import { __ } from "@wordpress/i18n";
+import { isBlobURL } from "@wordpress/blob";
+import { Spinner } from "@wordpress/components";
 
 class TeamMemberEdit extends Component {
     onChangeTitle = title => {
@@ -9,19 +11,33 @@ class TeamMemberEdit extends Component {
     onChangeInfo = info => {
         this.props.setAttributes({ info });
     };
+    onSelectImage = ({ id, url, alt }) => {
+        this.props.setAttributes({
+            id,
+            url,
+            alt
+        });
+    };
     render() {
         const { className, attributes } = this.props;
-        const { title, info } = attributes;
+        const { title, info, url, alt } = attributes;
         return (
             <div className={className}>
-                <MediaPlaceholder
-                    icon="format-image"
-                    //onSelect={image => console.log(image)}
-                    //onSelectURL={url => console.log(url)}
-                    //onError={message => console.log(message)}
-                    //accept="image/*"
-                    allowedTypes={["image"]}
-                />
+                {url ? (
+                    <>
+                        <img src={url} alt={alt} />
+                        {isBlobURL(url) && <Spinner />}
+                    </>
+                ) : (
+                    <MediaPlaceholder
+                        icon="format-image"
+                        onSelect={this.onSelectImage}
+                        //onSelectURL={url => console.log(url)}
+                        //onError={message => console.log(message)}
+                        //accept="image/*"
+                        allowedTypes={["image"]}
+                    />
+                )}
                 <RichText
                     className={"wp-block-mytheme-blocks-team-member__title"}
                     tagName="h4"

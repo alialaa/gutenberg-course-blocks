@@ -1,0 +1,28 @@
+.wp-block-mytheme-blocks-team-members {
+    display: block;
+    margin-left: 0px;
+    margin-right: 0px;
+    @for $i from 1 through 6 {
+        &.has-#{$i}-columns {
+            [data-type="mytheme-blocks/team-member"] {
+                width: calc(100% /#{$i});
+            }
+        }
+    }
+    > .editor-inner-blocks > .editor-block-list__layout {
+        display: flex;
+        flex-wrap: wrap;
+        .block-list-appender {
+            width: 100%;
+        }
+        > [data-type="mytheme-blocks/team-member"] {
+            max-width: none;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+    .wp-block-mytheme-blocks-team-member {
+        margin: 0;
+        width: auto !important;
+    }
+}

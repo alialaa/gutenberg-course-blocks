@@ -47,7 +47,7 @@ function mytheme_blocks_register() {
     wp_register_script(
         'mytheme-blocks-editor-script',
         plugins_url('dist/editor.js', __FILE__),
-        array('wp-blocks','wp-i18n', 'wp-element', 'wp-editor', 'wp-components','lodash','wp-blob','wp-data')
+        array('wp-blocks','wp-i18n', 'wp-element', 'wp-editor', 'wp-components','lodash','wp-blob','wp-data','wp-html-entities')
     );
 
     wp_register_script(
@@ -101,7 +101,7 @@ function mytheme_blocks_render_latest_posts_block($attributes){
         while ($query->have_posts()) {
             $query->the_post();
             $posts .= '<li><a href="' .esc_url(get_the_permalink()) . '">'
-            . get_the_title() . '</a><li>';
+            . get_the_title() . '</a></li>';
         }
         $posts .= '</ul>';
         wp_reset_postdata();

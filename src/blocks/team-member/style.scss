@@ -1,3 +1,7 @@
+.social_dragging {
+    list-style: none;
+}
+
 .wp-block-mytheme-blocks-team-members {
     display: flex;
     flex-wrap: wrap;
@@ -22,6 +26,12 @@
             color: #565656;
             font-weight: 300;
             margin-bottom: 5px;
+        }
+        &__addIcon {
+            padding: 2px;
+            line-height: 1;
+            border: 1px dashed #8c969f;
+            cursor: pointer;
         }
         &__linkForm {
             border: 1px solid #eaeaea;

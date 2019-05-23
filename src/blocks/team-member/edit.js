@@ -18,6 +18,7 @@ import {
     TextareaControl,
     SelectControl
 } from "@wordpress/components";
+import { withSelect } from "@wordpress/data";
 
 class TeamMemberEdit extends Component {
     componentDidMount() {
@@ -66,6 +67,28 @@ class TeamMemberEdit extends Component {
             alt
         });
     };
+    onImageSizeChange = url => {
+        this.props.setAttributes({
+            url
+        });
+    };
+    getImageSizes() {
+        const { image, imageSizes } = this.props;
+        if (!image) return [];
+        let options = [];
+        const sizes = image.media_details.sizes;
+        for (const key in sizes) {
+            const size = sizes[key];
+            const imageSize = imageSizes.find(size => size.slug === key);
+            if (imageSize) {
+                options.push({
+                    label: imageSize.name,
+                    value: size.source_url
+                });
+            }
+        }
+        return options;
+    }
     render() {
         //console.log(this.props);
         const { className, attributes, noticeUI } = this.props;
@@ -90,11 +113,9 @@ class TeamMemberEdit extends Component {
                         {id && (
                             <SelectControl
                                 label={__("Image Size", "mytheme-blocks")}
-                                options={[
-                                    { label: "Large", value: "large" },
-                                    { label: "Medium", value: "medium" }
-                                ]}
-                                //onChange={value => console.log(value)}
+                                options={this.getImageSizes()}
+                                onChange={this.onImageSizeChange}
+                                value={url}
                             />
                         )}
                     </PanelBody>
@@ -172,4 +193,10 @@ class TeamMemberEdit extends Component {
     }
 }
 
-export default withNotices(TeamMemberEdit);
+export default withSelect((select, props) => {
+    const id = props.attributes.id;
+    return {
+        image: id ? select("core").getMedia(id) : null,
+        imageSizes: select("core/editor").getEditorSettings().imageSizes
+    };
+})(withNotices(TeamMemberEdit));

@@ -5,6 +5,16 @@ import { isBlobURL } from "@wordpress/blob";
 import { Spinner, withNotices } from "@wordpress/components";
 
 class TeamMemberEdit extends Component {
+    componentDidMount() {
+        const { attributes, setAttributes } = this.props;
+        const { url, id } = attributes;
+        if (url && isBlobURL(url) && !id) {
+            setAttributes({
+                url: "",
+                alt: ""
+            });
+        }
+    }
     onChangeTitle = title => {
         this.props.setAttributes({ title });
     };

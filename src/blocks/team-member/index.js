@@ -4,6 +4,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 import edit from "./edit";
 import { RichText } from "@wordpress/editor";
+import { Dashicon } from "@wordpress/components";
 
 const attributes = {
     title: {
@@ -66,7 +67,7 @@ registerBlockType("mytheme-blocks/team-member", {
     attributes,
 
     save: ({ attributes }) => {
-        const { title, info, url, alt, id } = attributes;
+        const { title, info, url, alt, id, social } = attributes;
         return (
             <div>
                 {url && (
@@ -89,6 +90,33 @@ registerBlockType("mytheme-blocks/team-member", {
                         tagName="p"
                         value={info}
                     />
+                )}
+
+                {social.length > 0 && (
+                    <div
+                        className={
+                            "wp-block-mytheme-blocks-team-member__social"
+                        }
+                    >
+                        <ul>
+                            {social.map((item, index) => {
+                                return (
+                                    <li key={index} data-icon={item.icon}>
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <Dashicon
+                                                icon={item.icon}
+                                                size={16}
+                                            />
+                                        </a>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
                 )}
             </div>
         );

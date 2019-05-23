@@ -93,6 +93,9 @@ function mytheme_blocks_render_latest_posts_block($attributes){
     $args = array(
         'posts_per_page' => $attributes['numberOfPosts']
     );
+    if($attributes['postCategories']) {
+        $args['cat'] = $attributes['postCategories'];
+    }
     $query = new WP_Query($args);
     $posts = '';
 

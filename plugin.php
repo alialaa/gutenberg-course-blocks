@@ -71,6 +71,7 @@ function mytheme_blocks_register() {
     mytheme_blocks_register_block_type('secondblock');
     mytheme_blocks_register_block_type('team-member');
     mytheme_blocks_register_block_type('team-members');
+    mytheme_blocks_register_block_type('latest-posts');
 }
 
 add_action('init', 'mytheme_blocks_register');

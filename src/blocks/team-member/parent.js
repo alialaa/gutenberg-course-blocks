@@ -20,7 +20,8 @@ registerBlockType("mytheme-blocks/team-members", {
     category: "mytheme-category",
 
     supports: {
-        html: false
+        html: false,
+        align: ["wide", "full"]
     },
 
     keywords: [

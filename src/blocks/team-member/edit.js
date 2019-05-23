@@ -15,7 +15,8 @@ import {
     Toolbar,
     IconButton,
     PanelBody,
-    TextareaControl
+    TextareaControl,
+    SelectControl
 } from "@wordpress/components";
 
 class TeamMemberEdit extends Component {
@@ -84,6 +85,16 @@ class TeamMemberEdit extends Component {
                                 help={__(
                                     "Alternative text describes your image to people can't see it. Add a short description with its key details."
                                 )}
+                            />
+                        )}
+                        {id && (
+                            <SelectControl
+                                label={__("Image Size", "mytheme-blocks")}
+                                options={[
+                                    { label: "Large", value: "large" },
+                                    { label: "Medium", value: "medium" }
+                                ]}
+                                //onChange={value => console.log(value)}
                             />
                         )}
                     </PanelBody>

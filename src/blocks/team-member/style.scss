@@ -23,5 +23,28 @@
             font-weight: 300;
             margin-bottom: 5px;
         }
+        &__social {
+            ul {
+                list-style: none;
+                line-height: 1;
+                margin-left: -5px;
+                margin-right: -5px;
+                li {
+                    display: inline-block;
+                    line-height: 1;
+                    margin: 5px;
+                    a {
+                        border-bottom: none;
+                    }
+                    &.is-selected {
+                        outline: 2px solid #f03;
+                    }
+                    svg {
+                        vertical-align: middle;
+                        color: #4e4e4e;
+                    }
+                }
+            }
+        }
     }
 }

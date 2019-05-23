@@ -101,7 +101,7 @@ function mytheme_blocks_render_latest_posts_block($attributes){
         while ($query->have_posts()) {
             $query->the_post();
             $posts .= '<li><a href="' .esc_url(get_the_permalink()) . '">'
-            . get_the_title() . '</a><li>';
+            . get_the_title() . '</a></li>';
         }
         $posts .= '</ul>';
         wp_reset_postdata();

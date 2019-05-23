@@ -2,12 +2,29 @@ import { Component } from "@wordpress/element";
 import { withSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 import { decodeEntities } from "@wordpress/html-entities";
+import { RangeControl, PanelBody } from "@wordpress/components";
+import { InspectorControls } from "@wordpress/editor";
 
 class LatestPostsEdit extends Component {
+    onChangeNumberOfPosts = numberOfPosts => {
+        this.props.setAttributes({ numberOfPosts });
+    };
     render() {
-        const { posts, className } = this.props;
+        const { posts, className, attributes } = this.props;
+        const { numberOfPosts } = attributes;
         return (
             <>
+                <InspectorControls>
+                    <PanelBody title={__("Posts Settings", "mytheme-blocks")}>
+                        <RangeControl
+                            label={__("Number of Posts", "mytheme-blocks")}
+                            value={numberOfPosts}
+                            onChange={this.onChangeNumberOfPosts}
+                            min={1}
+                            max={10}
+                        />
+                    </PanelBody>
+                </InspectorControls>
                 {posts && posts.length > 0 ? (
                     <ul className={className}>
                         {posts.map(post => (

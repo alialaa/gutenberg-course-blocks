@@ -4,7 +4,8 @@ import {
     MediaPlaceholder,
     BlockControls,
     MediaUpload,
-    MediaUploadCheck
+    MediaUploadCheck,
+    InspectorControls
 } from "@wordpress/editor";
 import { __ } from "@wordpress/i18n";
 import { isBlobURL } from "@wordpress/blob";
@@ -12,7 +13,9 @@ import {
     Spinner,
     withNotices,
     Toolbar,
-    IconButton
+    IconButton,
+    PanelBody,
+    TextareaControl
 } from "@wordpress/components";
 
 class TeamMemberEdit extends Component {
@@ -57,12 +60,34 @@ class TeamMemberEdit extends Component {
             alt: ""
         });
     };
+    updateAlt = alt => {
+        this.props.setAttributes({
+            alt
+        });
+    };
     render() {
         //console.log(this.props);
         const { className, attributes, noticeUI } = this.props;
         const { title, info, url, alt, id } = attributes;
         return (
             <>
+                <InspectorControls>
+                    <PanelBody title={__("Image Settings", "mytheme-blocks")}>
+                        {url && !isBlobURL(url) && (
+                            <TextareaControl
+                                label={__(
+                                    "Alt Text (Alternative Text)",
+                                    "mytheme-blocks"
+                                )}
+                                value={alt}
+                                onChange={this.updateAlt}
+                                help={__(
+                                    "Alternative text describes your image to people can't see it. Add a short description with its key details."
+                                )}
+                            />
+                        )}
+                    </PanelBody>
+                </InspectorControls>
                 <BlockControls>
                     {url && (
                         <Toolbar>

@@ -24,9 +24,10 @@ class ReduxTodoEdit extends Component {
                             }
                         >
                             <input
+                                disabled={todo.loading}
                                 type="checkbox"
                                 checked={todo.completed}
-                                onChange={() => toggleToDo(todo)}
+                                onChange={() => toggleToDo(todo, index)}
                             />
                             {todo.title}
                         </div>
@@ -63,8 +64,8 @@ export default compose([
             addToDo: item => {
                 dispatch("mytheme-blocks/todo").addToDo(item);
             },
-            toggleToDo: todo => {
-                dispatch("mytheme-blocks/todo").toggleToDo(todo);
+            toggleToDo: (todo, index) => {
+                dispatch("mytheme-blocks/todo").toggleToDo(todo, index);
             }
         };
     })

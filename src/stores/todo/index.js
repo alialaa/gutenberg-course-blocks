@@ -19,14 +19,24 @@ const actions = {
         return {
             type: "FETCH_TODOS"
         };
-    }
-    // note:- this part is comment just for get rid of (response) commit error.
-    /* *toggleToDo(todo) {
+    },
+
+    *toggleToDo(todo, index) {
+        yield {
+            type: "UPDATE_TODO",
+            index,
+            todo: { ...todo, loading: true }
+        };
         const response = yield {
             type: "TOGGLE_TODO",
             todo
         };
-    } */
+        return {
+            type: "UPDATE_TODO",
+            index,
+            todo: response
+        };
+    }
 };
 
 const reducer = (state = DEFAULT_STATE, action) => {
@@ -35,6 +45,11 @@ const reducer = (state = DEFAULT_STATE, action) => {
             return [...state, action.item];
         case "POPULATE_TODOS":
             return [...action.todos];
+        case "UPDATE_TODO": {
+            let state_copy = [...state];
+            state_copy[action.index] = action.todo;
+            return state_copy;
+        }
         default:
             return state;
     }

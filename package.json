@@ -37,6 +37,7 @@
     "dependencies": {
         "@wordpress/blob": "^2.4.0",
         "@wordpress/blocks": "^6.2.2",
+        "@wordpress/compose": "^3.3.0",
         "@wordpress/data": "^4.5.0",
         "@wordpress/html-entities": "^2.3.0",
         "@wordpress/i18n": "^3.3.0",

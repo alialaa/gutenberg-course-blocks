@@ -1,5 +1,6 @@
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
+import edit from "./edit";
 
 registerBlockType("mytheme-blocks/redux", {
     title: __("Redux Test", "mytheme-blocks"),
@@ -18,28 +19,7 @@ registerBlockType("mytheme-blocks/redux", {
 
     category: "mytheme-category",
 
-    edit() {
-        return (
-            <div>
-                <h2>
-                    {wp.data
-                        .select("core/editor")
-                        .getEditedPostAttribute("title")}
-                    <input
-                        type="text"
-                        value={wp.data
-                            .select("core/editor")
-                            .getEditedPostAttribute("title")}
-                        onChange={e =>
-                            wp.data
-                                .dispatch("core/editor")
-                                .editPost({ title: e.target.value })
-                        }
-                    />
-                </h2>
-            </div>
-        );
-    },
+    edit: edit,
 
     save() {
         return null;

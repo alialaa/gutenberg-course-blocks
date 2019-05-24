@@ -97,6 +97,7 @@ function mytheme_blocks_register() {
     );
     mytheme_blocks_register_block_type('redux');
     mytheme_blocks_register_block_type('todo-list');
+    mytheme_blocks_register_block_type('todo-list-count');
 }
 
 add_action('init', 'mytheme_blocks_register');

@@ -42,6 +42,16 @@ function mytheme_blocks_register_block_type($block, $options = array ()) {
     );
 }
 
+function mytheme_blocks_enqueue_assets() {
+    wp_enqueue_script(
+        'mytheme-blocks-editor-js',
+        plugins_url('dist/editor_script.js', __FILE__),
+        array()
+    );
+}
+
+add_action('enqueue_block_editor_assets', 'mytheme_blocks_enqueue_assets');
+
 function mytheme_blocks_register() { 
     
     wp_register_script(
@@ -86,6 +96,7 @@ function mytheme_blocks_register() {
         )
     );
     mytheme_blocks_register_block_type('redux');
+    mytheme_blocks_register_block_type('todo-list');
 }
 
 add_action('init', 'mytheme_blocks_register');

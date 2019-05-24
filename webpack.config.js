@@ -11,7 +11,8 @@ module.exports = (env, argv) => {
     var config = {
         entry: {
             editor: "./src/editor.js",
-            script: "./src/script.js"
+            script: "./src/script.js",
+            editor_script: "./src/editor_script.js"
         },
         output: {
             filename: "[name].js"

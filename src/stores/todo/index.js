@@ -1,9 +1,9 @@
-import { registerStore, dispatch } from "@wordpress/data";
+import { registerStore } from "@wordpress/data";
 
 const DEFAULT_STATE = [];
 
 const actions = {
-    populateTodos(todos) {
+    populateToDos(todos) {
         return {
             type: "POPULATE_TODOS",
             todos
@@ -13,6 +13,11 @@ const actions = {
         return {
             type: "ADD_TODO",
             item: item
+        };
+    },
+    fetchTodos() {
+        return {
+            type: "FETCH_TODOS"
         };
     }
 };
@@ -38,13 +43,17 @@ registerStore("mytheme-blocks/todo", {
     reducer,
     selectors,
     actions,
+    controls: {
+        FETCH_TODOS() {
+            return fetch(
+                "https://jsonplaceholder.typicode.com/todos?_limit=10"
+            ).then(response => response.json());
+        }
+    },
     resolvers: {
-        getTodos() {
-            fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-                .then(response => response.json())
-                .then(response => {
-                    dispatch("mytheme-blocks/todo").populateTodos(response);
-                });
+        *getTodos() {
+            const todos = yield actions.fetchTodos();
+            return actions.populateToDos(todos);
         }
     }
 });

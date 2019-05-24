@@ -46,7 +46,7 @@ function mytheme_blocks_enqueue_assets() {
     wp_enqueue_script(
         'mytheme-blocks-editor-js',
         plugins_url('dist/editor_script.js', __FILE__),
-        array()
+        array('wp-data')
     );
 }
 

@@ -20,6 +20,13 @@ const actions = {
             type: "FETCH_TODOS"
         };
     }
+    // note:- this part is comment just for get rid of (response) commit error.
+    /* *toggleToDo(todo) {
+        const response = yield {
+            type: "TOGGLE_TODO",
+            todo
+        };
+    } */
 };
 
 const reducer = (state = DEFAULT_STATE, action) => {
@@ -47,6 +54,20 @@ registerStore("mytheme-blocks/todo", {
         FETCH_TODOS() {
             return fetch(
                 "https://jsonplaceholder.typicode.com/todos?_limit=10"
+            ).then(response => response.json());
+        },
+        TOGGLE_TODO({ todo }) {
+            return fetch(
+                `https://jsonplaceholder.typicode.com/todos/${todo.id}`,
+                {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        completed: !todo.completed
+                    }),
+                    headers: {
+                        "content-type": "application/json; charset=UTF-8"
+                    }
+                }
             ).then(response => response.json());
         }
     },

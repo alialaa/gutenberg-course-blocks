@@ -1,1 +1,1 @@
-alert(true);
+import "./stores/todo";

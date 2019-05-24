@@ -85,6 +85,7 @@ function mytheme_blocks_register() {
             )
         )
     );
+    mytheme_blocks_register_block_type('redux');
 }
 
 add_action('init', 'mytheme_blocks_register');

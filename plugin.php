@@ -11,6 +11,8 @@ if ( ! defined( 'ABSPATH' )) {
     exit;
 }
 
+include_once('src/metabox.php');
+
 function mytheme_blocks_categories( $categories, $post ){
     return array_merge(
         $categories, 

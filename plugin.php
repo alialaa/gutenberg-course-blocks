@@ -129,3 +129,25 @@ function mytheme_blocks_render_latest_posts_block($attributes){
         return '<div>' . __('No Posts Found', "mytheme-blocks") . '</div>';
     }
 }
+
+function mytheme_blocks_register_post_template() {
+    $post_type_object = get_post_type_object('post');
+    $post_type_object->template = array(
+        array('mytheme-blocks/meta'),
+        array('core/paragraph', array(
+            'content' => 'cljljlj'
+        )),
+        array(
+            'mytheme-blocks/team-members',
+            array(
+                columns => 2
+            ),
+            array(
+                array('mytheme-blocks/team-member', array('title'=>'ljljljl;j')),
+                array('mytheme-blocks/team-member'),
+            )
+        )
+    );
+}
+
+add_action('init', 'mytheme_blocks_register_post_template');

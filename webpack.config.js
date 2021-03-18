@@ -2,7 +2,6 @@ const autoprefixer = require("autoprefixer");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const CleanPlugin = require("clean-webpack-plugin");
 
 module.exports = (env, argv) => {
     function isDevelopment() {
@@ -15,13 +14,12 @@ module.exports = (env, argv) => {
             editor_script: "./src/editor_script.js"
         },
         output: {
-            filename: "[name].js"
+            filename: "[name].js",
+            clean: true
         },
         optimization: {
             minimizer: [
-                new TerserPlugin({
-                    sourceMap: true
-                }),
+                new TerserPlugin({ terserOptions: { sourceMap: true } }),
                 new OptimizeCSSAssetsPlugin({
                     cssProcessorOptions: {
                         map: {
@@ -33,7 +31,6 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
-            new CleanPlugin(),
             new MiniCSSExtractPlugin({
                 chunkFilename: "[id].css",
                 filename: chunkData => {
@@ -80,7 +77,9 @@ module.exports = (env, argv) => {
                         {
                             loader: "postcss-loader",
                             options: {
-                                plugins: [autoprefixer()]
+                                postcssOptions: {
+                                    plugins: [autoprefixer()]
+                                }
                             }
                         },
                         "sass-loader"
@@ -101,7 +100,10 @@ module.exports = (env, argv) => {
             "@wordpress/html-entities": ["wp", "htmlEntities"],
             "@wordpress/compose": ["wp", "compose"],
             "@wordpress/plugins": ["wp", "plugins"],
-            "@wordpress/edit-post": ["wp", "editPost"]
+            "@wordpress/edit-post": ["wp", "editPost"],
+            "@wordpress/block-editor": ["wp", "blockEditor"],
+            react: "React",
+            "react-dom": "ReactDOM"
         }
     };
     return config;

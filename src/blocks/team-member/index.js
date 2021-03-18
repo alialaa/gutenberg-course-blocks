@@ -3,7 +3,7 @@ import "./parent";
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 import edit from "./edit";
-import { RichText } from "@wordpress/editor";
+import { RichText } from "@wordpress/block-editor";
 import { Dashicon } from "@wordpress/components";
 
 const attributes = {

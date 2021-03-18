@@ -8,7 +8,7 @@ import {
     PanelColorSettings,
     withColors,
     ContrastChecker
-} from "@wordpress/editor";
+} from "@wordpress/block-editor";
 import { RangeControl, PanelBody } from "@wordpress/components";
 import classnames from "classnames";
 
@@ -100,7 +100,7 @@ class Edit extends Component {
                     className={classes}
                     onChange={this.onChangeContent}
                     value={content}
-                    formattingControls={["bold"]}
+                    allowedFormats={["bold"]}
                     style={{
                         textAlign: textAlignment,
                         backgroundColor: backgroundColor.color,

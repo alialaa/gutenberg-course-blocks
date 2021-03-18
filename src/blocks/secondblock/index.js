@@ -1,7 +1,7 @@
 import "./styles.editor.scss";
 import { registerBlockType, createBlock } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
-import { RichText, getColorClassName } from "@wordpress/editor";
+import { RichText, getColorClassName } from "@wordpress/block-editor";
 import Edit from "./edit";
 import classnames from "classnames";
 import { omit } from "lodash";
